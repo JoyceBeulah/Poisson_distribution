@@ -14,22 +14,25 @@ The Poisson distribution is the discrete probability distribution of the number 
 ![image](https://user-images.githubusercontent.com/104613195/166248326-fd042076-8b0b-40c4-8b11-1d8e8fcb74db.png)
 
  Conditions for Poisson Distribution:
-
+ 
 1. An event can occur any number of times during a time period.
 2. Events occur independently. I
 3. The rate of occurrence is constant.
 4. The probability of an event occurring is proportional to the length of the time period. 
  
 # Procedure :
-
-![image](https://user-images.githubusercontent.com/104613195/166251988-d0c53205-6080-4f7b-ae4c-398178586637.png)
+![image](https://github.com/JoyceBeulah/Poisson_distribution/assets/118343698/27eea1f9-6213-4219-ab4a-2e4a24420e94)
 
 # Experiment :
+![image](https://github.com/JoyceBeulah/Poisson_distribution/assets/118343698/3bfe13a5-8d44-4cda-9c7f-56290b3b0590)
+
 # Program :
 ```
+
 import numpy as np
 import math
 import scipy.stats
+
 L=[int(i) for i in input().split()]
 N=len(L);M=max(L)
 X=list();f=list()
@@ -42,18 +45,21 @@ for i in range(M+1):
     X.append(i)
 sf=np.sum(f)
 p=list()
+
 for i in range(M+1):
     p.append(f[i]/sf)
 mean=np.inner(X,p)
 pr=list();E=list();xi=list()
 print(" X P(X=x) Obs.Fr Exp.Fr xi")
 print("------------------------")
+
 for x in range(M+1):
     pr.append(math.exp(-mean)*mean**x/math.factorial(x))
     E.append(pr[x]*sf)
     xi.append((f[x]-E[x])**2/E[x])
     print("%2.2f %2.2f %4.2f %3.2f %3.2f"%(x,pr[x],f[x],E[x],xi[x]))
 print("------------------")
+
 cal_chi2_sq=np.sum(xi)
 print("Calculated value of Chi square is %4.2f"%cal_chi2_sq)
 table_chi2=scipy.stats.chi2.ppf(1-.01,df=M)
@@ -62,7 +68,9 @@ if cal_chi2_sq<table_chi2:
     print("The given data can be fitted in poisson distribution at 1% LOS ")
 else:
      print(("The given data cannot be fitted in poisson distribution at 1% LOS "))
+     
 ```
+
 # Output : 
 ![image](https://github.com/JoyceBeulah/Poisson_distribution/assets/118343698/7e413a40-e448-4bbf-9f81-869cb853c945)
 
